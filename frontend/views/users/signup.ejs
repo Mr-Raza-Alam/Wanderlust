@@ -1,52 +1,80 @@
 <!-- This is for signup page -->
 
- <% layout("/layouts/boilierPlate") -%>
-<h1 class="col-8 offset-5"><u>Signup on Wanderlust</u></h1>
-<div class="row mt-4">
- <div class="col-8 offset-3">
-   <form action="/listings/signup" method="post" class="needs-validation" novalidate>
-    <div class="mb-3">
-     <label for="name" class="form-label"><b>Username</b></label>
-     <input type="text"  name="username" class="form-control" id="name"  required/>
-    <div class="valid-feedback">
-      Nice username!!
-     </div>
-     <div class="invalid-feedback">
-      <b>Username missing.Please mention an Username</b>
-     </div>
-    </div>
+<% layout("/layouts/boilierPlate") -%>
 
-  <div class="mb-3">
-     <label for="email" class="form-label"><b>Email-id</b></label>
-     <input type="email"  name="email_id" class="form-control" id="email"  required/>
-    <div class="valid-feedback">
-      valid email_id!!
-     </div>
-     <div class="invalid-feedback">
-      <b>Invalide email-id</b>
-     </div>
+  <div class="auth-wrapper">
+    <div class="auth-card">
+      <!-- Header Section -->
+      <div class="auth-header">
+        <div class="auth-icon">
+          <i class="fa-solid fa-user-plus"></i>
+        </div>
+        <h2 class="auth-title">Create Account</h2>
+        <p class="auth-subtitle">Join Wanderlust and explore amazing places</p>
+      </div>
+
+      <!-- Form Section -->
+      <form action="/listings/signup" method="post" class="auth-form needs-validation" novalidate>
+        <div class="auth-field">
+          <label for="name" class="auth-label">
+            <i class="fa-solid fa-user"></i> Username
+          </label>
+          <input type="text" name="username" class="auth-input" id="name" placeholder="Choose a username" required />
+          <div class="valid-feedback">
+            <i class="fa-solid fa-circle-check"></i> Nice username!
+          </div>
+          <div class="invalid-feedback">
+            <i class="fa-solid fa-circle-exclamation"></i> Username is required
+          </div>
+        </div>
+
+        <div class="auth-field">
+          <label for="email" class="auth-label">
+            <i class="fa-solid fa-envelope"></i> Email
+          </label>
+          <input type="email" name="email_id" class="auth-input" id="email" placeholder="you@example.com" required />
+          <div class="valid-feedback">
+            <i class="fa-solid fa-circle-check"></i> Valid email!
+          </div>
+          <div class="invalid-feedback">
+            <i class="fa-solid fa-circle-exclamation"></i> Please enter a valid email
+          </div>
+        </div>
+
+        <div class="auth-field">
+          <label for="mobile" class="auth-label">
+            <i class="fa-solid fa-phone"></i> Contact Number
+          </label>
+          <input type="text" name="phone_No" class="auth-input" id="mobile" placeholder="10-digit mobile number"
+            required />
+          <div class="invalid-feedback">
+            <i class="fa-solid fa-circle-exclamation"></i> Contact number is required
+          </div>
+        </div>
+
+        <div class="auth-field">
+          <label for="pass" class="auth-label">
+            <i class="fa-solid fa-lock"></i> Password
+          </label>
+          <input type="password" name="password" class="auth-input" id="pass" placeholder="Create a strong password"
+            required />
+          <div class="valid-feedback">
+            <i class="fa-solid fa-circle-check"></i> Strong password!
+          </div>
+          <div class="invalid-feedback">
+            <i class="fa-solid fa-circle-exclamation"></i> Password must include a capital letter and special characters
+            (@#?)
+          </div>
+        </div>
+
+        <button type="submit" class="auth-btn">
+          <i class="fa-solid fa-user-plus"></i> Create Account
+        </button>
+      </form>
+
+      <!-- Footer Link -->
+      <div class="auth-footer">
+        <p>Already have an account? <a href="/listings/login" class="auth-link">Login here</a></p>
+      </div>
+    </div>
   </div>
-       <div class="mb-3">
-     <label for="mobile" class="form-label"><b>Contact Number</b></label>
-     <input type="text"  name="phone_No" class="form-control" id="mobile"  required/>
-    
-     <div class="invalid-feedback">
-      <b>Contact number is required!</b>
-     </div>
-    </div>
-           <div class="mb-3">
-     <label for="pass" class="form-label"><b>Password</b></label>
-     <input type="password"  name="password" class="form-control" id="pass"  required/>
-    <div class="valid-feedback">
-      Strong password!!
-     </div>
-     <div class="invalid-feedback">
-      <b>Not a strong password.Password must contain atleast one capital letter and @#? charaters.</b>
-     </div>
-    </div>
-
-    <button class="btn btn-success">Signup</button>
-
-    </form>
- </div>
-</div>

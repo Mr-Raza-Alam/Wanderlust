@@ -2,27 +2,48 @@
 
  
  <% layout("/layouts/boilierPlate") -%>
-<h1 class="col-8 offset-5"><u>Login to Wanderlust</u></h1>
-<div class="row mt-4">
- <div class="col-8 offset-3">
-   <form action="/listings/login" method="post" class="needs-validation" novalidate>
-  <div class="mb-3">
-     <label for="name" class="form-label"><b>Username</b></label>
-     <input type="text"  name="username" class="form-control" id="name"  required/>
-     <div class="invalid-feedback">
-      <b>Unavailable username.please mention a valid one</b>
-     </div>
-  </div>
-    <div class="mb-3">
-     <label for="pass" class="form-label"><b>Password</b></label>
-     <input type="password"  name="password" class="form-control" id="pass"  required/>
-     <div class="invalid-feedback">
-      <b>Invalid Password.</b>
-     </div>
+
+<div class="auth-wrapper">
+  <div class="auth-card">
+    <!-- Header Section -->
+    <div class="auth-header">
+      <div class="auth-icon">
+        <i class="fa-solid fa-right-to-bracket"></i>
+      </div>
+      <h2 class="auth-title">Welcome Back</h2>
+      <p class="auth-subtitle">Login to continue your journey on Wanderlust</p>
     </div>
 
-    <button class="btn btn-success">Login</button>
+    <!-- Form Section -->
+    <form action="/listings/login" method="post" class="auth-form needs-validation" novalidate>
+      <div class="auth-field">
+        <label for="name" class="auth-label">
+          <i class="fa-solid fa-user"></i> Username
+        </label>
+        <input type="text" name="username" class="auth-input" id="name" placeholder="Enter your username" required />
+        <div class="invalid-feedback">
+          <i class="fa-solid fa-circle-exclamation"></i> Please enter a valid username
+        </div>
+      </div>
 
+      <div class="auth-field">
+        <label for="pass" class="auth-label">
+          <i class="fa-solid fa-lock"></i> Password
+        </label>
+        <input type="password" name="password" class="auth-input" id="pass" placeholder="Enter your password" required />
+        <div class="invalid-feedback">
+          <i class="fa-solid fa-circle-exclamation"></i> Password is required
+        </div>
+      </div>
+
+      <button type="submit" class="auth-btn">
+        <i class="fa-solid fa-arrow-right-to-bracket"></i> Login
+      </button>
     </form>
- </div>
+
+    <!-- Footer Link -->
+    <div class="auth-footer">
+      <p>Don't have an account? <a href="/listings/signup" class="auth-link">Sign up here</a></p>
+    </div>
+  </div>
 </div>

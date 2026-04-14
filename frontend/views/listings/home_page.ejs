@@ -1,112 +1,151 @@
 <!-- home page -->
- <!-- </% layout("/layouts/boilierPlate") -%> -->
+<% layout("/layouts/boilierPlate") -%>
 
- <!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Accept coordinates as input to a geocoder</title>
-<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-<link href="https://api.mapbox.com/mapbox-gl-js/v3.12.0/mapbox-gl.css" rel="stylesheet">
-<script src="https://api.mapbox.com/mapbox-gl-js/v3.12.0/mapbox-gl.js"></script>
-<style>
-body { margin: 0; padding: 0; }
-#map { height: 40rem; width: 80rem; border: 3px solid; border-radius: 5px; transform: translate(4rem,5rem);}
-</style>
-</head>
-<body>
-<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.3/mapbox-gl-geocoder.min.js"></script>
-<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.3/mapbox-gl-geocoder.css" type="text/css">
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Discover Your Next <span class="hero-highlight">Adventure</span></h1>
+            <p class="hero-subtitle">Explore unique stays and experiences around the world. From cozy mountain cabins to
+                beachside villas — your perfect getaway is just a click away.</p>
+            <div class="hero-actions">
+                <a href="/listings" class="hero-btn hero-btn-primary">
+                    <i class="fa-solid fa-compass"></i> Explore Listings
+                </a>
+                <a href="/listings/new" class="hero-btn hero-btn-outline">
+                    <i class="fa-solid fa-plus"></i> List Your Property
+                </a>
+            </div>
+        </div>
+    </section>
 
- <div class="row mt-4">    
-    <div class="col-4 offset-3">
-        <h3>Welcome to WunderLust World.</h3>
-     <a href="/listings/back" class="btn btn-secondary">&lt;&lt;Back to page</a>
-    </div>
- </div>
-<div id="map"></div>
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stat-card">
+            <i class="fa-solid fa-house stat-icon"></i>
+            <h3 class="stat-number">500+</h3>
+            <p class="stat-label">Properties Listed</p>
+        </div>
+        <div class="stat-card">
+            <i class="fa-solid fa-users stat-icon"></i>
+            <h3 class="stat-number">10K+</h3>
+            <p class="stat-label">Happy Travelers</p>
+        </div>
+        <div class="stat-card">
+            <i class="fa-solid fa-earth-americas stat-icon"></i>
+            <h3 class="stat-number">50+</h3>
+            <p class="stat-label">Countries</p>
+        </div>
+        <div class="stat-card">
+            <i class="fa-solid fa-star stat-icon"></i>
+            <h3 class="stat-number">4.8</h3>
+            <p class="stat-label">Average Rating</p>
+        </div>
+    </section>
 
-<script>
-   //'pk.eyJ1IjoicmF6YS1iMzAiLCJhIjoiY21icnFzdHhnMGdseDJrcXhjcnhudmdldyJ9.LI9BvgpTtsr77wY50uOo6w';
-	mapboxgl.accessToken = "<%= process.env.MAP_TOKEN %>";
-    const map = new mapboxgl.Map({
-        container: 'map',
-        // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-        style: 'mapbox://styles/mapbox/standard',
-        center: [92.7900, 24.7500],
-        zoom: 8
-    });
+    <!-- Features Section -->
+    <section class="features-section">
+        <h2 class="section-title">Why Choose <span class="hero-highlight">WanderLust</span>?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon-wrap">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h4 class="feature-title">Verified Listings</h4>
+                <p class="feature-desc">Every property is reviewed and verified to ensure quality stays.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon-wrap">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                </div>
+                <h4 class="feature-title">Interactive Maps</h4>
+                <p class="feature-desc">Explore destinations on an interactive map before you book.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon-wrap">
+                    <i class="fa-solid fa-comments"></i>
+                </div>
+                <h4 class="feature-title">Honest Reviews</h4>
+                <p class="feature-desc">Read genuine reviews from real travelers who've been there.</p>
+            </div>
+        </div>
+    </section>
 
-    /* Given a query in the form "lng, lat" or "lat, lng"
-     * returns the matching geographic coordinate(s)
-     * as search results in carmen geojson format,
-     * https://github.com/mapbox/carmen/blob/master/carmen-geojson.md */
-    const coordinatesGeocoder = function (query) {
-        // Match anything which looks like
-        // decimal degrees coordinate pair.
-        const matches = query.match(
-            /^[ ]*(?:Lat: )?(-?\d+\.?\d*)[, ]+(?:Lng: )?(-?\d+\.?\d*)[ ]*$/i
+    <!-- Explore Map Section -->
+    <section class="map-section">
+        <h2 class="section-title">Explore the <span class="hero-highlight">World</span></h2>
+        <p class="map-subtitle">Search any destination and discover what awaits you</p>
+        <div id="map" class="home-map"></div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2 class="cta-title">Ready to Start Your Journey?</h2>
+            <p class="cta-desc">Join thousands of travelers discovering amazing places every day.</p>
+            <a href="/listings" class="hero-btn hero-btn-primary">
+                <i class="fa-solid fa-arrow-right"></i> Get Started Now
+            </a>
+        </div>
+    </section>
+
+    <script
+        src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.3/mapbox-gl-geocoder.min.js"></script>
+    <link rel="stylesheet"
+        href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.3/mapbox-gl-geocoder.css"
+        type="text/css">
+
+    <script>
+        mapboxgl.accessToken = "<%= process.env.MAP_TOKEN %>";
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/standard',
+            center: [78.9629, 20.5937],
+            zoom: 4
+        });
+
+        const coordinatesGeocoder = function (query) {
+            const matches = query.match(
+                /^[ ]*(?:Lat: )?(-?\d+\.?\d*)[, ]+(?:Lng: )?(-?\d+\.?\d*)[ ]*$/i
+            );
+            if (!matches) { return null; }
+            function coordinateFeature(lng, lat) {
+                return {
+                    center: [lng, lat],
+                    geometry: { type: 'Point', coordinates: [lng, lat] },
+                    place_name: 'Lat: ' + lat + ' Lng: ' + lng,
+                    place_type: ['coordinate'],
+                    properties: {},
+                    type: 'Feature'
+                };
+            }
+            const coord1 = Number(matches[1]);
+            const coord2 = Number(matches[2]);
+            const geocodes = [];
+            if (coord1 < -90 || coord1 > 90) { geocodes.push(coordinateFeature(coord1, coord2)); }
+            if (coord2 < -90 || coord2 > 90) { geocodes.push(coordinateFeature(coord2, coord1)); }
+            if (geocodes.length === 0) {
+                geocodes.push(coordinateFeature(coord1, coord2));
+                geocodes.push(coordinateFeature(coord2, coord1));
+            }
+            return geocodes;
+        };
+
+        map.addControl(
+            new MapboxGeocoder({
+                accessToken: mapboxgl.accessToken,
+                localGeocoder: coordinatesGeocoder,
+                zoom: 4,
+                placeholder: 'Search a destination...',
+                mapboxgl: mapboxgl,
+                reverseGeocode: true
+            })
         );
-        if (!matches) {
-            return null;
-        }
 
-        function coordinateFeature(lng, lat) {
-            return {
-                center: [lng, lat],
-                geometry: {
-                    type: 'Point',
-                    coordinates: [lng, lat]
-                },
-                place_name: 'Lat: ' + lat + ' Lng: ' + lng,
-                place_type: ['coordinate'],
-                properties: {},
-                type: 'Feature'
-            };
-        }
-
-        const coord1 = Number(matches[1]);
-        const coord2 = Number(matches[2]);
-        const geocodes = [];
-
-        if (coord1 < -90 || coord1 > 90) {
-            // must be lng, lat
-            geocodes.push(coordinateFeature(coord1, coord2));
-        }
-
-        if (coord2 < -90 || coord2 > 90) {
-            // must be lat, lng
-            geocodes.push(coordinateFeature(coord2, coord1));
-        }
-
-        if (geocodes.length === 0) {
-            // else could be either lng, lat or lat, lng
-            geocodes.push(coordinateFeature(coord1, coord2));
-            geocodes.push(coordinateFeature(coord2, coord1));
-        }
-
-        return geocodes;
-    };
-
-    // Add the control to the map.
-    map.addControl(
-        new MapboxGeocoder({
-            accessToken: mapboxgl.accessToken,
-            localGeocoder: coordinatesGeocoder,
-            zoom: 4,
-            placeholder: 'Try: -40, 170',
-            mapboxgl: mapboxgl,
-            reverseGeocode: true
-        })
-    );
-       const marker = new mapboxgl.Marker({color : "red",})
-        .setLngLat([92.7900, 24.7500])// listing.geometry.coordinates
-        .setPopup(new mapboxgl.Popup({offset: 25})//, className: 'my-class' so setPopum is funct.name
-        .setHTML(``)
-        .setMaxWidth("300px"))
-        .addTo(map);
-</script>
-
-</body>
-</html>
-
+        const marker = new mapboxgl.Marker({ color: "#0d9f6e" })
+            .setLngLat([78.9629, 20.5937])
+            .setPopup(new mapboxgl.Popup({ offset: 25 })
+                .setHTML('<b>India</b>')
+                .setMaxWidth("300px"))
+            .addTo(map);
+    </script>

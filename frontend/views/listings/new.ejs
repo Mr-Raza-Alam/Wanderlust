@@ -1,117 +1,125 @@
-<!-- template for new creating form for user input -->
+    <!-- template for new creating form for user input -->
 <!-- now i am going to include boilerplate code of ejs-Mate -->
- <% layout("/layouts/boilierPlate") -%>
-<body>
-  <div class="row ">
- <form method="post" action="/listings" novalidate class="createForm needs-validation" enctype="multipart/form-data"> 
-   <!-- here client site validations are also included in it -->
-   <div class="col-12 offset-2" >
-     <h3 style="text-align: center;">Create a new list</h3>
-    <div class="mb-3">
-     <label for="tit" class="form-label"><b>Title</b></label>
-     <input type="text"  name="listing[title]" class="form-control" id="tit" placeholder="Add a cachy title" required/>
- 
-     <div class="invalid-feedback">
-      <b>Oops your are missing to mention the <u>Title</u>.</b>
-     </div>
-    </div>
-  
-   <div class="mb-3">
-    <label for="desc" class="form-label"> <b>Description </label>
-    <textarea name="listing[description]" id="desc" rows="6" cols="45" class="form-control" required></textarea>
+<% layout("/layouts/boilierPlate") -%>
 
-    <div class="invalid-feedback">
-      You missed to drop your description.Please Mention Once!!.
-     </div>
-   </div>
-  
-    <div class="mb-3">
-     <label for="image" class="form-label">Upload Image (<i>file's size must be less than 1MB</i>)</label>
-     <input type="file" id="image" name="listing[image]" class="form-control" required>
-     <div class="valid-feedback">
-        Thank you to upload an img !!.
-     </div>
-     <div class="invalid-feedback">
-       upload image with file'size must be less than 1mb in jpeg format.
-     </div>
-    </div>
-    <div class="row">
-    <div class="mb-3 col-md-4">
-     <label for="price" class="form-label">Price</label>
-     <input type="text" name="listing[price]" class="form-control" id="price" placeholder="1390" required >
+  <div class="form-page-wrapper">
+    <div class="form-page-card">
+      <!-- Header -->
+      <div class="form-page-header">
+        <div class="form-page-icon">
+          <i class="fa-solid fa-house-chimney-crack"></i>
+        </div>
+        <h2 class="form-page-title">List Your Property</h2>
+        <p class="form-page-subtitle">Share your space with travelers around the world</p>
+      </div>
 
-    <div class="invalid-feedback">
-      What is the price??
-     </div>
-    </div>
+      <!-- Form -->
+      <form method="post" action="/listings" novalidate class="form-page-form needs-validation"
+        enctype="multipart/form-data">
 
-    <div class="mb-3 col-md-8">
-    <label for="count" class="form-label">Country</label>
-    <input type="text" id="count" name="listing[country]" class="form-control" placeholder="India">
+        <!-- Title -->
+        <div class="form-page-field">
+          <label for="tit" class="form-page-label">
+            <i class="fa-solid fa-heading"></i> Title
+          </label>
+          <input type="text" name="listing[title]" class="form-page-input" id="tit"
+            placeholder="e.g. Cozy Mountain Cabin with Lake View" required />
+          <div class="invalid-feedback">
+            <i class="fa-solid fa-circle-exclamation"></i> Please add a catchy title for your listing
+          </div>
+        </div>
 
-    <div class="invalid-feedback">
-      In which country,your resisdent is located??
-     </div>
-    </div>
- </div>
+        <!-- Description -->
+        <div class="form-page-field">
+          <label for="desc" class="form-page-label">
+            <i class="fa-solid fa-align-left"></i> Description
+          </label>
+          <textarea name="listing[description]" id="desc" rows="4" class="form-page-input form-page-textarea"
+            placeholder="Describe your property — amenities, nearby attractions, special features..."
+            required></textarea>
+          <div class="invalid-feedback">
+            <i class="fa-solid fa-circle-exclamation"></i> A description helps travelers know what to expect
+          </div>
+        </div>
 
-  
-    <div class="mb-3">
-     <label for="locate" class="form-label" >Location</label>
-    <input type="text" class="form-control" name="listing[location]" id="locate" placeholder="Assam,Punjab" required>
+        <!-- Image Upload -->
+        <div class="form-page-field">
+          <label for="image" class="form-page-label">
+            <i class="fa-solid fa-camera"></i> Upload Image
+            <span class="form-page-hint">(Max 1MB, JPEG/PNG)</span>
+          </label>
+          <div class="form-page-file-wrap">
+            <input type="file" id="image" name="listing[image]" class="form-page-file" required>
+            <div class="form-page-file-label">
+              <i class="fa-solid fa-cloud-arrow-up"></i>
+              <span>Choose a photo of your property</span>
+            </div>
+          </div>
+          <div class="valid-feedback">
+            <i class="fa-solid fa-circle-check"></i> Image uploaded successfully!
+          </div>
+          <div class="invalid-feedback">
+            <i class="fa-solid fa-circle-exclamation"></i> Please upload an image (max 1MB, JPEG format)
+          </div>
+        </div>
 
-    <div class="invalid-feedback">
-      Don't missed it to mention your current resisdent location!!.
-     </div>
-    </div>
-    <!-- for checkbox to confirm with Agree term and condtions -->
-  <div class="form-check mb-3">
-    <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-    <label class="form-check-label" for="invalidCheck">
-        Agree to terms and conditions
-     </label>
-    <div class="invalid-feedback">
-        You must agree before submitting.
-    </div>
-   </div>
-  <!-- here required  is a keyword that  by-default set a constraint to the field where it settled then it must require from the user other passed them to next -->
-    <div class="addBtn mb-3">
-    <a href="/listings/newBack" class="btn btn-secondary" role="button" style="width: 8rem; height: 2.5rem; margin:1.2rem 3rem 0 0;">
-        &lt;&lt;Back</a>
-        <button type="submit " id="newBtn" class="btn btn-success">Add Up</button>   
+        <!-- Price & Country Row -->
+        <div class="form-page-row">
+          <div class="form-page-field form-page-field-half">
+            <label for="price" class="form-page-label">
+              <i class="fa-solid fa-indian-rupee-sign"></i> Price
+              <span class="form-page-hint">(per night)</span>
+            </label>
+            <input type="text" name="listing[price]" class="form-page-input" id="price" placeholder="1,500" required>
+            <div class="invalid-feedback">
+              <i class="fa-solid fa-circle-exclamation"></i> Price is required
+            </div>
+          </div>
+
+          <div class="form-page-field form-page-field-half">
+            <label for="count" class="form-page-label">
+              <i class="fa-solid fa-flag"></i> Country
+            </label>
+            <input type="text" id="count" name="listing[country]" class="form-page-input" placeholder="India">
+            <div class="invalid-feedback">
+              <i class="fa-solid fa-circle-exclamation"></i> Which country is your property in?
+            </div>
+          </div>
+        </div>
+
+        <!-- Location -->
+        <div class="form-page-field">
+          <label for="locate" class="form-page-label">
+            <i class="fa-solid fa-location-dot"></i> Location
+          </label>
+          <input type="text" class="form-page-input" name="listing[location]" id="locate"
+            placeholder="e.g. Manali, Himachal Pradesh" required>
+          <div class="invalid-feedback">
+            <i class="fa-solid fa-circle-exclamation"></i> Please mention your property's location
+          </div>
+        </div>
+
+        <!-- Terms Checkbox -->
+        <div class="form-page-check">
+          <input class="form-page-checkbox" type="checkbox" value="" id="invalidCheck" required>
+          <label class="form-page-check-label" for="invalidCheck">
+            I agree to the <a href="#" class="auth-link">Terms & Conditions</a>
+          </label>
+          <div class="invalid-feedback">
+            <i class="fa-solid fa-circle-exclamation"></i> You must agree before submitting
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="form-page-actions">
+          <a href="/listings/newBack" class="form-page-btn-back">
+            <i class="fa-solid fa-arrow-left"></i> Back
+          </a>
+          <button type="submit" class="auth-btn">
+            <i class="fa-solid fa-plus"></i> Publish Listing
+          </button>
+        </div>
+
+      </form>
     </div>
   </div>
- </form>
-</div>
-</body>
-<!-- 
-     <input type="url" id="image" name="listing[image]" class="form-control" placeholder="enter image URL/Link">
-  mb-3 -- means marginBottom : 3unit
- <form method="post" action="/listings" class="createForm">
-    <b>Title : </b><input type="text" name="listing[title]">
-     <label for="desc"> <b>Description : </b></label><br>
-        <textarea name="listing[description]" id="desc" rows="6" cols="45"></textarea>
-    <b>Image-URL :</b> <input type="text" name="listing[image]">
-    <b>Price :</b> &nbsp; &nbsp; <input type="number" name="listing[price]">
-    <b>Location :</b> &nbsp;<input type="text" name="listing[location]">
-    <b>Country :</b> &nbsp;&nbsp;<input type="text" name="listing[country]">
-    <button type="submit" id="newBtn">Add Up</button>
-        <button id="showEditBtn">  <a href="/listing/newBack"> &lt;&lt;Back </a> </button>
-</form>
-
--->
-
-<!-- 
-<div class="mb-3 row">
-  <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-  <div class="col-sm-10">
-    <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
-  </div>
-</div>
-<div class="mb-3 row">
-  <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-  <div class="col-sm-10">
-    <input type="password" class="form-control" id="inputPassword">
-  </div>
-</div>
--->
