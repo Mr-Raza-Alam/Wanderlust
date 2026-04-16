@@ -7,9 +7,8 @@
     <section class="hero-section">
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1 class="hero-title">Discover Your Next <span class="hero-highlight">Adventure</span></h1>
-            <p class="hero-subtitle">Explore unique stays and experiences around the world. From cozy mountain cabins to
-                beachside villas — your perfect getaway is just a click away.</p>
+            <h1 class="hero-title">Find Your Perfect<br><span class="hero-highlight">Getaway</span></h1>
+            <p class="hero-subtitle">Discover unique stays and experiences around the world — from cozy mountain cabins to beachside villas.</p>
             <div class="hero-actions">
                 <a href="/listings" class="hero-btn hero-btn-primary">
                     <i class="fa-solid fa-compass"></i> Explore Listings
@@ -91,8 +90,7 @@
         </div>
     </section>
 
-    <script
-        src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.3/mapbox-gl-geocoder.min.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.3/mapbox-gl-geocoder.min.js"></script>
     <link rel="stylesheet"
         href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.3/mapbox-gl-geocoder.css"
         type="text/css">
@@ -101,7 +99,7 @@
         mapboxgl.accessToken = "<%= process.env.MAP_TOKEN %>";
         const map = new mapboxgl.Map({
             container: 'map',
-            style: 'mapbox://styles/mapbox/standard',
+            style: 'mapbox://styles/mapbox/light-v11',
             center: [78.9629, 20.5937],
             zoom: 4
         });
@@ -144,7 +142,7 @@
             })
         );
 
-        const marker = new mapboxgl.Marker({ color: "#0d9f6e" })
+        const marker = new mapboxgl.Marker({ color: "#FF385C" })
             .setLngLat([78.9629, 20.5937])
             .setPopup(new mapboxgl.Popup({ offset: 25 })
                 .setHTML('<b>India</b>')

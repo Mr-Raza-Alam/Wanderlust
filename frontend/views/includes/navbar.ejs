@@ -1,49 +1,44 @@
 <style>
   .srchBar {
-    width: 18rem;
-    border: 2px solid #d1d5db;
-    border-radius: 1.4rem;
-    padding: .3rem 3rem .3rem 1.2rem;
-    font-size: 1rem;
-    transition: all 0.3s ease;
+    width: 20rem;
+    border: 1.5px solid #dddddd;
+    border-radius: 2rem;
+    padding: 0.5rem 1.2rem;
+    font-size: 0.9rem;
+    transition: all 0.25s ease;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
   }
-
   .srchBar:focus {
-    border-color: #0d9f6e;
-    box-shadow: 0 0 0 3px rgba(13, 159, 110, 0.12);
+    border-color: #222222;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.14);
     outline: none;
   }
-
   .srchBtn {
-    width: 8rem;
-    background-color: #0d9f6e;
+    background: linear-gradient(135deg, #FF385C, #E31C5F);
     color: #fff;
     border: none;
-    border-radius: 1.4rem;
+    border-radius: 2rem;
     font-weight: 600;
-    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    padding: 0.5rem 1.2rem;
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 8px rgba(255,56,92,0.3);
   }
-
   .srchBtn:hover {
-    background-color: #046c4e;
-    color: #fff;
+    background: linear-gradient(135deg, #E31C5F, #c8175a);
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(13, 159, 110, 0.3);
+    box-shadow: 0 4px 14px rgba(255,56,92,0.4);
+    color: #fff;
   }
-
-  .srchBtn i {
-    display: inline;
-    margin-right: .3rem;
-  }
+  .srchBtn i { display: inline; margin-right: .3rem; }
 </style>
-<!-- Template for navbar using bootstrap -->
+<!-- Navbar -->
 <nav class="navbar navbar-expand-md border-bottom sticky-top"
-  style="background-color: #fff; box-shadow: 0 2px 12px rgba(0,0,0,0.06);">
+  style="background-color: #fff; border-bottom: 1px solid #ebebeb !important; box-shadow: none;">
   <div class="container-fluid">
-    <a class="navbar-brand d-flex align-items-center" href="/" style="gap: 0.4rem;">
-      <i class="fa-solid fa-compass" style="color: #0d9f6e; font-size: 1.8rem;"></i>
-      <span
-        style="font-family: 'Inter', sans-serif; font-weight: 700; color: #014737; font-size: 1.2rem;">WanderLust</span>
+    <a class="navbar-brand d-flex align-items-center" href="/" style="gap: 0.4rem; text-decoration: none;">
+      <i class="fa-solid fa-compass" style="color: #FF385C; font-size: 1.8rem;"></i>
+      <span style="font-family: 'Inter', sans-serif; font-weight: 800; color: #FF385C; font-size: 1.3rem; letter-spacing: -0.5px;">WanderLust</span>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
       aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,8 +46,9 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link" href="/listings" style="font-weight: 500;"><i class="fa-solid fa-globe"
-            style="color: #0d9f6e; margin-right: 0.3rem;"></i>Explore</a>
+        <a class="nav-link" href="/listings" style="font-weight: 500; color: #222222;">
+          <i class="fa-solid fa-globe" style="color: #FF385C; margin-right: 0.3rem;"></i>Explore
+        </a>
       </div>
       <div class="navbar-nav ms-auto searchBox">
         <form class="d-flex" role="search" action="/listings/search" method="get">
@@ -62,15 +58,19 @@
         </form>
       </div>
       <div class="navbar-nav ms-auto">
-        <a class="nav-link" href="/listings/new" style="font-weight: 500;"><i class="fa-solid fa-plus"
-            style="color: #0d9f6e; margin-right: 0.3rem;"></i>List Property</a>
+        <a class="nav-link" href="/listings/new" style="font-weight: 500; color: #222222;">
+          <i class="fa-solid fa-plus" style="color: #FF385C; margin-right: 0.3rem;"></i>List Property
+        </a>
         <% if(typeof currUser==="undefined" || !currUser){ %>
-          <a class="nav-link" href="/listings/signup" style="font-weight: 600; color: #0d9f6e !important;">Signup</a>
-          <a class="nav-link" href="/listings/login"><b>Login</b></a>
-          <%}else{ %>
-            <a class="nav-link" href="/listings/logout" style="font-weight: 600; color: #dc2626 !important;"><i
-                class="fa-solid fa-right-from-bracket" style="margin-right: 0.3rem;"></i>Logout</a>
-            <% } %>
+          <a class="nav-link" href="/listings/signup"
+            style="font-weight: 600; color: #FF385C !important;">Signup</a>
+          <a class="nav-link" href="/listings/login" style="font-weight: 600; color: #222222;"><b>Login</b></a>
+        <%}else{ %>
+          <a class="nav-link" href="/listings/logout"
+            style="font-weight: 600; color: #717171 !important;">
+            <i class="fa-solid fa-right-from-bracket" style="margin-right: 0.3rem;"></i>Logout
+          </a>
+        <% } %>
       </div>
     </div>
   </div>

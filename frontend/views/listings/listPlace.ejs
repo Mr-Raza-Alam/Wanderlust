@@ -1,158 +1,98 @@
 <!-- Template For display all listing place -->
-<!-- now i am going to include boilerplate code of ejs-Mate -->
-   <!-- </%= success %> -->
- <!-- <h2>All Listings</h2> -->
- <% layout("/layouts/boilierPlate") -%>
- <style>
-   #filters{
+<% layout("/layouts/boilierPlate") -%>
+<style>
+  #filters {
     display: flex;
-    flex-wrap: wrap;
-   }
-   .filter{
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 0;
+    padding: 1rem 0 0.5rem;
+    border-bottom: 1px solid #ebebeb;
+    scrollbar-width: none;
+    align-items: center;
+  }
+  #filters::-webkit-scrollbar { display: none; }
+  .filter {
     text-align: center;
-    margin-right: 2rem;
-    opacity: .7;
-   }
-    .filter:hover{
-      opacity: 1;
-      cursor: not-allowed;
-    }
-   .filter div i{
-    font-size: 1.4rem;
-   }
-   .filter p{
-    font-size: .8rem;
-   }
-   .tax-info{
-    display: none;
-   }
-   .tax-toggle{
+    padding: 0 1.2rem;
+    opacity: 0.6;
+    flex: 0 0 auto;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+    cursor: not-allowed;
+  }
+  .filter:hover {
+    opacity: 1;
+    border-bottom: 2px solid #222222;
+  }
+  .filter div i { font-size: 1.4rem; color: #222222; }
+  .filter p   { font-size: 0.72rem; color: #222222; margin: 0.3rem 0 0; font-weight: 500; }
+  .tax-info   { display: none; }
+  .tax-toggle {
     display: flex;
     align-items: center;
-    height: 3.25rem;
-    padding: 1rem;
-    border: 1px solid black;
-    border-radius: 1rem;
-    transform: translate(5rem,-.3rem);
-   }
- </style>
- <div id="filters" title="Category filters coming soon!">
-    <div class="filter">
-      <div><i class="fa-solid fa-fire"></i></div>
-      <p>Trending</p>
-    </div>
-    <div class="filter">
-     <div><i class="fa-solid fa-bed"></i></div>
-      <p>Rooms</p>
-    </div>
-    <div class="filter">
-     <div><i class="fa-solid fa-mountain-city"></i></div>
-      <p>Iconic Cities</p>
-    </div>
-    <div class="filter">
-     <div><i class="fa-solid fa-person-swimming"></i></div>
-      <p>Amazing Pools</p>
-    </div>
-    <div class="filter">
-      <div><i class="fa-solid fa-umbrella-beach"></i></div>
-      <p>Beach</p>
-    </div>
-    <div class="filter">
-     <div><i class="fa-solid fa-sailboat"></i></div>
-      <p>Boats</p>
-    </div>
-  <div class="filter">
-     <div><i class="fa-solid fa-hill-avalanche"></i></div>
-      <p>Arctic</p>
-    </div>      
-    <div class="filter">
-     <div><i class="fa-brands fa-fort-awesome"></i></div>
-      <p>Castles</p>
-    </div>
-    <div class="filter">
-     <div><i class="fa-solid fa-tent-arrow-left-right"></i></div>
-      <p>Camping</p>
-    </div>
-    <div class="filter">
-     <div><i class="fa-solid fa-cow"></i></div>
-      <p>Farms</p>
-    </div>    
-    <div class="filter">
-     <div><i class="fa-solid fa-igloo"></i></div>
-      <p>Doms</p>
-    </div>
-    <div class="filter">
-     <div><i class="fa-solid fa-utensils"></i></div>
-      <p>Breakfast</p>
-    </div>
-    <div class="filter">
-     <div><i class="fa-solid fa-person-skiing"></i></div>
-       <p>Skiing</p>
-    </div>    
+    height: 3rem;
+    padding: 0 1rem;
+    border: 1px solid #dddddd;
+    border-radius: 0.75rem;
+    margin-left: auto;
+    flex-shrink: 0;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    white-space: nowrap;
+    color: #222222;
+  }
+</style>
 
-   <div class="tax-toggle">
-     <div class="form-check-reverse form-switch">
-     <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
-     <label class="form-check-label" for="switchCheckDefault">Display total after taxes</label>
-    </div>      
+<div id="filters" title="Category filters coming soon!">
+  <div class="filter"><div><i class="fa-solid fa-fire"></i></div><p>Trending</p></div>
+  <div class="filter"><div><i class="fa-solid fa-bed"></i></div><p>Rooms</p></div>
+  <div class="filter"><div><i class="fa-solid fa-mountain-city"></i></div><p>Iconic Cities</p></div>
+  <div class="filter"><div><i class="fa-solid fa-person-swimming"></i></div><p>Amazing Pools</p></div>
+  <div class="filter"><div><i class="fa-solid fa-umbrella-beach"></i></div><p>Beach</p></div>
+  <div class="filter"><div><i class="fa-solid fa-sailboat"></i></div><p>Boats</p></div>
+  <div class="filter"><div><i class="fa-solid fa-hill-avalanche"></i></div><p>Arctic</p></div>
+  <div class="filter"><div><i class="fa-brands fa-fort-awesome"></i></div><p>Castles</p></div>
+  <div class="filter"><div><i class="fa-solid fa-tent-arrow-left-right"></i></div><p>Camping</p></div>
+  <div class="filter"><div><i class="fa-solid fa-cow"></i></div><p>Farms</p></div>
+  <div class="filter"><div><i class="fa-solid fa-igloo"></i></div><p>Domes</p></div>
+  <div class="filter"><div><i class="fa-solid fa-utensils"></i></div><p>Breakfast</p></div>
+  <div class="filter"><div><i class="fa-solid fa-person-skiing"></i></div><p>Skiing</p></div>
+  <div class="tax-toggle">
+    <div class="form-check-reverse form-switch">
+      <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+      <label class="form-check-label" for="switchCheckDefault">Display total after taxes</label>
     </div>
- </div>
+  </div>
+</div>
 
- <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+<div class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-4 mt-1 px-2">
   <% for(let list of allList){ %>
-   <div class="card col listing-card">
-    <a href="/listings/<%= list._id %>" class="listing-link">
-    <img src="<%= list.image.url %>" class="card-img-top" alt="listing_image" style="height : 20rem;">
-      <div class="card-img-overlay">
-         <!-- new listing -->
+    <div class="col">
+      <div class="listing-card">
+        <a href="/listings/<%= list._id %>" class="listing-link">
+          <div style="overflow: hidden; border-radius: 0.75rem;">
+            <img src="<%= list.image.url %>" class="card-img-top" alt="listing_image">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><%= list.title %></h5>
+            <p class="card-text" style="color: #717171; font-size: 0.875rem;">
+              <span style="color: #222; font-weight: 600;">&#8377;<%= list.price.toLocaleString("en-IN")%></span> / night
+              <i class="tax-info">&nbsp;&nbsp;+18% GST</i>
+            </p>
+          </div>
+        </a>
       </div>
-     </a>
-      <div class="card-body">
-       <h5 class="card-title"><%= list.title %></h5>
-       <p class="card-text">
-        &#8377;<%= list.price.toLocaleString("en-IN")%>/3nights       
-        <i class="tax-info"> &nbsp;&nbsp; +18%GST</i>
-      </p>
-      <a href="/listings/<%= list._id %>" class="btn btn-primary">Know more>></a>
-     </div>
-   </div>
+    </div>
+  <% } %>
+</div>
 
-   <% } %>
- </div>
-
- <script>
+<script>
   let taxSwitch = document.getElementById("switchCheckDefault");
-
-  taxSwitch.addEventListener("click",()=>{
-     let taxInfo = document.getElementsByClassName("tax-info");// it will return an array of taxes i.e for each listing
-    for(let info of taxInfo){
-    if(info.style.display != "inline"){
-      info.style.display = "inline";
-     }else{
-      info.style.display = "none";
-     }
+  taxSwitch.addEventListener("click", () => {
+    let taxInfo = document.getElementsByClassName("tax-info");
+    for (let info of taxInfo) {
+      info.style.display = (info.style.display !== "inline") ? "inline" : "none";
     }
   });
- </script>
-<!-- 
-  style="width: 20rem;"
-  <h3>All Listing </h3>
-  <form method="get" action="/listing/new" class="newForm">
-    <button id="newBtn">Create New</button>
-  </form>
--->
-
-<!-- 
-  </% for(let list of allList){ %>
-   <div class="listItem">
-     <ul>    
-        <li>Title : <a href="/listing<//%= list._id %>"></%= list.title %></a></li>
-        <li>Description : <//%= list.description%></li>
-        <li>Url : <a href="<//%= list.image %>" target="_main">visit here.</a></li>
-        <li>Price : &#8377;<//%= list.price.toLocaleString("en-IN") %></li>
-        <li>Location : <//%= list.location %></li>
-        <li>Country : </%= list.country %></li>
-      </ul>
-   </div><hr>
-   </% } %>
--->
+</script>
