@@ -13,7 +13,7 @@ const reviewSchema = new Schema({
    },
  createAt : {
     type : Date,
-    default : Date.now(),
+    default : Date.now,// without () so Mongoose calls it fresh for each new review
  },
  author : {
    type : Schema.Types.ObjectId,

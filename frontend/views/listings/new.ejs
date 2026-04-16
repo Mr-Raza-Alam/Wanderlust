@@ -49,7 +49,7 @@
             <span class="form-page-hint">(Max 1MB, JPEG/PNG)</span>
           </label>
           <div class="form-page-file-wrap">
-            <input type="file" id="image" name="listing[image]" class="form-page-file" required>
+            <input type="file" id="image" name="listing[image]" class="form-page-file" accept=".jpg,.jpeg,.png" required>
             <div class="form-page-file-label">
               <i class="fa-solid fa-cloud-arrow-up"></i>
               <span>Choose a photo of your property</span>
@@ -70,7 +70,7 @@
               <i class="fa-solid fa-indian-rupee-sign"></i> Price
               <span class="form-page-hint">(per night)</span>
             </label>
-            <input type="text" name="listing[price]" class="form-page-input" id="price" placeholder="1,500" required>
+            <input type="number" name="listing[price]" class="form-page-input" id="price" min="0" placeholder="1500" required>
             <div class="invalid-feedback">
               <i class="fa-solid fa-circle-exclamation"></i> Price is required
             </div>
@@ -80,7 +80,7 @@
             <label for="count" class="form-page-label">
               <i class="fa-solid fa-flag"></i> Country
             </label>
-            <input type="text" id="count" name="listing[country]" class="form-page-input" placeholder="India">
+            <input type="text" id="count" name="listing[country]" class="form-page-input" placeholder="India" required>
             <div class="invalid-feedback">
               <i class="fa-solid fa-circle-exclamation"></i> Which country is your property in?
             </div>

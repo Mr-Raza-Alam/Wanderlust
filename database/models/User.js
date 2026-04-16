@@ -14,7 +14,6 @@ const userSchema = new Schema({
     required: [true, "Mobile number is required"],
     unique: true,
     match: [/^[6-9]\d{9}$/, "Please enter a valid 10-digit mobile number"],
-    default: "7004091859" // Set your default mobile number here
    },
 
 });

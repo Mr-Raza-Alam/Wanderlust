@@ -90,7 +90,7 @@ module.exports.destroyListing = async (req, res) => {
 };
 
 module.exports.searchAction = async (req, res) => {
-  let { searchLocation } = req.body;
+  let { searchLocation } = req.query;// use req.query for GET requests (bookmarkable URLs)
   let requestedListing = await list.find({ location: { $regex: searchLocation, $options: "i" } });
   if (requestedListing.length === 0) {
     req.flash("error", "Ooops!No such listings are avialable on requested location.");

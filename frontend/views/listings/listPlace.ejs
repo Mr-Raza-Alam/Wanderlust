@@ -13,10 +13,10 @@
     margin-right: 2rem;
     opacity: .7;
    }
-   .filter:hover{
-     opacity: 1;
-     cursor: pointer;
-   }
+    .filter:hover{
+      opacity: 1;
+      cursor: not-allowed;
+    }
    .filter div i{
     font-size: 1.4rem;
    }
@@ -36,8 +36,7 @@
     transform: translate(5rem,-.3rem);
    }
  </style>
-<body>  
-  <div id="filters">
+ <div id="filters" title="Category filters coming soon!">
     <div class="filter">
       <div><i class="fa-solid fa-fire"></i></div>
       <p>Trending</p>
@@ -88,7 +87,7 @@
     </div>
     <div class="filter">
      <div><i class="fa-solid fa-person-skiing"></i></div>
-      <p>Skitting</p>
+       <p>Skiing</p>
     </div>    
 
    <div class="tax-toggle">
@@ -135,7 +134,6 @@
     }
   });
  </script>
-</body>
 <!-- 
   style="width: 20rem;"
   <h3>All Listing </h3>

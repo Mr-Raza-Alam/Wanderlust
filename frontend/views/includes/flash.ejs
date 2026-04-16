@@ -1,27 +1,28 @@
-<!-- flash messge -->
- <!-- <h4>Flash message for sucees
-    </%= success -- this is actually an array so, apply condition only succes exit and also success.length >0
-    
-    %></h4> -->
-<%if(typeof success !== 'undefined' && success.length){%>
+<!-- flash messages — now uses separate if blocks so multiple can show at once -->
+<% if(typeof success !== 'undefined' && success.length){ %>
 <div class="alert alert-success alert-dismissible fade show col-5 offset-3" role="alert">
     <%= success[0] %>
 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
+<% } %>
 
-<%}else if(typeof remove !== 'undefined' && remove.length){%>
+<% if(typeof remove !== 'undefined' && remove.length){ %>
 <div class="alert alert-dark alert-dismissible fade show col-5 offset-3" role="alert">
     <%= remove[0] %>
 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
-<%}else if(typeof update !== 'undefined' && update.length){%>
+<% } %>
+
+<% if(typeof update !== 'undefined' && update.length){ %>
 <div class="alert alert-info alert-dismissible fade show col-5 offset-3" role="alert">
     <%= update[0] %>
 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
-<%}else if(typeof error !== 'undefined' && error.length){%>    
+<% } %>
+
+<% if(typeof error !== 'undefined' && error.length){ %>
 <div class="alert alert-danger alert-dismissible fade show col-5 offset-3" role="alert">
     <%= error[0] %>
 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
- <%}%>
+<% } %>

@@ -10,6 +10,9 @@ const path = require("path");
 const app = express();
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
+const compression = require("compression");// to compress every response before sending to browser
+const helmet = require("helmet");// security headers (X-Frame-Options, CSP, etc.)
+const rateLimit = require("express-rate-limit");// to prevent brute-force attacks
 const expressError = require("./utils/expressError.js"); // added custom error class
 
 const ejsMate = require("ejs-mate");
@@ -28,27 +31,36 @@ const User = require("../database/models/User.js");
 app.engine("ejs", ejsMate);//define an engine for ejsMate Of EJS
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "../frontend/views"));
+app.use(compression());// compress all responses (HTML, CSS, JS) by ~70% before sending
+app.use(helmet({contentSecurityPolicy: false}));// security headers (CSP disabled to allow Mapbox/CDN scripts)
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "../frontend/public")));
 app.use(methodOverride("_method"));
 
-//  const dbUrl = process.env.ATLASDB_URL;
-//  if (process.env.NODE_ENV === "production") {
-//   app.set("trust proxy", 1);
-// }
+// Rate limiter for auth routes — max 15 attempts per 15 min window
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 15,
+  message: "Too many attempts. Please try again after 15 minutes.",
+});
 
-//  const store = mongoStore.create({
-//    mongoUrl : dbUrl,
-//    crypto : {
-//      secret : process.env.SECRET  ,     
-//    },
-//    touchAfter : 24 * 3600, // i.e. 24 hrs
-// });
-// store.on("error",()=>{
-//   console.log(`ERROR in mongo Session Store and error is : ${err}`)
-// });
+ const dbUrl = process.env.ATLASDB_URL || "mongodb://127.0.0.1:27017/wanderTust";// fallback to local DB if Atlas URL not set
+ if (process.env.NODE_ENV === "production") {
+  app.set("trust proxy", 1);// trust Render's proxy so secure cookies work
+}
+
+ const store = mongoStore.create({
+   mongoUrl : dbUrl,
+   crypto : {
+     secret : process.env.SECRET  ,     
+   },
+   touchAfter : 24 * 3600, // i.e. 24 hrs -- avoids unnecessary session updates
+});
+store.on("error",(err)=>{
+  console.log(`ERROR in mongo Session Store and error is : ${err}`)
+});
 const sessionOption = {
-   //store,
+   store,// now sessions are stored in MongoDB, not in server memory
    secret: process.env.SECRET,
    resave: false,
    saveUninitialized: false,// not true b/c it prevent from empty session info storage
@@ -63,8 +75,9 @@ const sessionOption = {
 
 // now established DataBase connection
 async function main() {
-   //   "mongodb://127.0.0.1:27017/wanderTust"
-   await mongoose.connect("mongodb://127.0.0.1:27017/wanderTust");
+   // In production use Atlas, in development use local MongoDB
+   const mongoUrl = dbUrl || "mongodb://127.0.0.1:27017/wanderTust";
+   await mongoose.connect(mongoUrl);
 }
 // call main function
 main().then((res) => {
@@ -100,8 +113,8 @@ app.get("/", (req, res) => {// for icon
    res.render("listings/home_page.ejs");
 });
 
-// for authentication 
-app.use("/listings", usersRouter);
+// for authentication (with rate limiting to prevent brute-force attacks)
+app.use("/listings", authLimiter, usersRouter);
 
 // for listings
 app.use("/listings", listingsRouter);

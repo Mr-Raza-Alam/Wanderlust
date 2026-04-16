@@ -2,11 +2,10 @@
  <!-- now i am going to include boilerplate code of ejs-Mate -->
  <% layout("/layouts/boilierPlate") -%>
 
- <body>
    <div class="row">
      <div class="col-8 offset-2">
       <h3>Edit your listing</h3>
-      <form method="post" action="/listings/<%= editing._id%>?_method=PUT" class="editForm" enctype="multipart/form-data">
+      <form method="post" action="/listings/<%= editing._id%>?_method=PUT" class="editForm needs-validation" novalidate enctype="multipart/form-data">
         <div class="mb-3">
          <label for="tit" class="form-label">Title</label>
         <input type="text" id="tit"  name="listing[title]" value="<%= editing.title %>"class="form-control">
@@ -42,12 +41,11 @@
    
         <div class="editBtn">
           <a href="/listings/<%= editing._id %>/editBack" class="btn btn-secondary"> &lt;&lt;Back </a> 
-          <button type="submit"  id="editBtn">Edit</button>
+          <button type="submit"  id="editBtn" class="btn btn-dark">Edit</button>
         </div>
      </form>
    </div>
-</div>
- </body>
+ </div>
 
  <!-- 
    <div class="mb-3">

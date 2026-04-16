@@ -2,6 +2,8 @@
 <!-- now i am going to include boilerplate code of ejs-Mate -->
 
  <% layout("/layouts/boilierPlate") -%>
+ <link href="https://api.mapbox.com/mapbox-gl-js/v3.12.0/mapbox-gl.css" rel="stylesheet">
+ <script src="https://api.mapbox.com/mapbox-gl-js/v3.12.0/mapbox-gl.js"></script>
   <script>// this is to send following data to map.js in public folder 
   const mapToken = "<%= process.env.MAP_TOKEN%>";
  </script>
@@ -17,7 +19,7 @@
       <p><b>&#8377;<%= showList.price.toLocaleString("en-IN")%>/3nights</b></p>
      <p> <%= showList.location %></p>
      <p> <%= showList.country %> </p>
-      <% if(currUser){ %>
+      <% if(currUser && currUser._id.equals(showList.owner._id)){ %>
       <div class="cardBody">
       <a href="/listings/<%= showList._id %>/edit" class="btn btn-primary">Edit &gt;&gt;</a>
       <form method="post" action="/listings/<%= showList._id %>?_method=DELETE">
@@ -79,9 +81,11 @@
         <h5 class="card-title">@<%= review.author.username%></h5>
         <p class="starability-result card-text" data-rating= "<%= review.rating %>"></p>
         <p class="card-text"><%= review.comment %></p>
-      <form class="mb-3" action="/listings/<%= showList._id%>/reviews/<%= review._id%>?_method=DELETE" method="post">
+      <% if(currUser && currUser._id.equals(review.author._id)){ %>
+       <form class="mb-3" action="/listings/<%= showList._id%>/reviews/<%= review._id%>?_method=DELETE" method="post">
          <button class="btn btn-sm btn-dark">Delete</button>
-      </form>
+       </form>
+       <% } %>
      </div>
     </div>
      <% } %>
@@ -91,7 +95,7 @@
  <!-- This part is for map functionality -->
    <div class="col-8 offset-3 mb-3">
     <h3>Where you'll be</h3>
-    <div id="map" data-coordinates='<%= JSON.stringify(showList) %>'></div>
+    <div id="map" data-coordinates='<%= JSON.stringify({geometry: showList.geometry, title: showList.title}) %>'></div>
    </div>
    
   <div class="card-body">

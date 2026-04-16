@@ -29,7 +29,7 @@ router.route("/")
 
 // New Route-- for getting a form for creating new information insertion from client site 
 router.get("/new", isloggedIn, newListForm);
-router.post("/search", wrapAsync(searchAction))
+router.get("/search", wrapAsync(searchAction))
 
 router.route("/:id")
   .get(wrapAsync(showListing))// show Route--- for all individual  list
